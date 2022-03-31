@@ -5,8 +5,16 @@
         <div class="pull-left mt-2">
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
-        <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+        <div class="mt-3">
+            <div style="margin-top: 2rem" class="float-left mb-4">
+                <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+            </div>
+            <form class="mb-4 float-right" style="width: 45%; margin-top: 30px" action="{{ route('mahasiswa.index') }}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Searching...." name="search" value="{{ request('search') }}">
+                    <button class="btn btn-primary ml-2" type="submit">Search</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -35,6 +43,7 @@
     </tr>
     @foreach ($paginate as $mhs)
     <tr>
+
         <td>{{ $mhs->nim }}</td>
         <td>{{ $mhs->nama }}</td>
         <td>{{ $mhs->kelas }}</td>
@@ -56,5 +65,8 @@
     </tr>
     @endforeach
 </table>
-{{ $paginate->links() }}
+Halaman : {{ $paginate->currentPage() }}
+<div class="float-right">
+    {{ $paginate->links() }}
+</div>
 @endsection

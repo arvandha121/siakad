@@ -15,10 +15,23 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all(); //mengambil semua isi tabel
-        $paginate=Mahasiswa::orderBy('id_mahasiswa','asc')->paginate(5);
-        return view('mahasiswa.index',['mahasiswa'=>$mahasiswa,'paginate'=>$paginate]);
+        if (request('search')){
+            $paginate = Mahasiswa::where('nim', 'like', '%'.request('search').'%')
+                ->orwhere('nama', 'like', '%'.request('search').'%')
+                ->orwhere('kelas', 'like', '%'.request('search').'%')
+                ->orwhere('jurusan', 'like', '%'.request('search').'%')
+                ->orwhere('jenis_kelamin', 'like', '%'.request('search').'%')
+                ->orwhere('email', 'like', '%'.request('search').'%')
+                ->orwhere('alamat', 'like', '%'.request('search').'%')
+                ->orwhere('tanggal_lahir', 'like', '%'.request('search').'%')
+                ->paginate(5);
+            return view('mahasiswa.index', ['paginate'=>$paginate]);
+        } else {
+            //fungsi eloquent menampilkan data menggunakan pagination
+            $mahasiswa = Mahasiswa::all(); //mengambil semua isi tabel
+            $paginate=Mahasiswa::orderBy('id_mahasiswa','asc')->paginate(5);
+            return view('mahasiswa.index',['mahasiswa'=>$mahasiswa,'paginate'=>$paginate]);
+        }
     }
 
     /**

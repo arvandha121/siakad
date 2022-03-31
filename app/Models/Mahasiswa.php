@@ -15,9 +15,13 @@ class Mahasiswa extends Model
     protected $primaryKey='id_mahasiswa';//Memanggil isi DB Dengan primaryKey
 
     protected $fillable=[
-        'Nim',
-        'Nama',
-        'Kelas',
-        'Jurusan',
+        'nim',
+        'nama',
+        'kelas',
+        'jurusan',
+        'jenis_kelamin',
+        'email',
+        'alamat',
+        'tanggal_lahir',
     ];
 };

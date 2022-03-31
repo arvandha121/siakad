@@ -41,10 +41,14 @@ class MahasiswaController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-        'Nim' => 'required',
-        'Nama' => 'required',
-        'Kelas' => 'required',
-        'Jurusan' => 'required', 
+            'nim' => 'required',
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jurusan' => 'required', 
+            'jenis_kelamin' => 'required', 
+            'email' => 'required', 
+            'alamat' => 'required', 
+            'tanggal_lahir' => 'required', 
         ]);
         //fungsi eloquent untuk menambah data
         Mahasiswa::create($request->all());
@@ -89,18 +93,26 @@ class MahasiswaController extends Controller
     public function update(Request $request, $nim)
     {
         $request->validate([
-        'Nim' => 'required',
-        'Nama' => 'required',
-        'Kelas' => 'required',
-        'Jurusan' => 'required', 
+            'nim' => 'required',
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jurusan' => 'required', 
+            'jenis_kelamin' => 'required', 
+            'email' => 'required', 
+            'alamat' => 'required', 
+            'tanggal_lahir' => 'required',  
         ]);
 
         //fungsi eloquent untuk mengupdate data inputan kita
         Mahasiswa::where('nim', $nim) ->update([
-        'nim'=>$request->Nim,
-        'nama'=>$request->Nama,
-        'kelas'=>$request->Kelas,
-        'jurusan'=>$request->Jurusan,
+            'nim'=>$request->nim,
+            'nama'=>$request->nama,
+            'kelas'=>$request->kelas,
+            'jurusan'=>$request->jurusan,
+            'jenis_kelamin'=>$request->jenis_kelamin,
+            'email'=>$request->email,
+            'alamat'=>$request->alamat,
+            'tanggal_lahir'=>$request->tanggal_lahir,
         ]);
 
         //jika data berhasil diupdate, akan kembali ke halaman utama

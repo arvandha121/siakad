@@ -23,20 +23,36 @@
                 <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm">
                     @csrf
                     <div class="form-group">
-                        <label for="Nim">Nim</label>
-                        <input type="text" name="Nim" class="form-control" id="Nim" aria-describedby="Nim">
+                        <label for="nim">Nim</label>
+                        <input type="text" name="nim" class="form-control" id="nim" aria-describedby="nim">
                     </div>
                     <div class="form-group">
-                        <label for="Nama">Nama</label>
-                        <input type="Nama" name="Nama" class="form-control" id="Nama" aria-describedby="Nama">
+                        <label for="nama">Nama</label>
+                        <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="nama">
                     </div>
                     <div class="form-group">
-                        <label for="Kelas">Kelas</label>
-                        <input type="Kelas" name="Kelas" class="form-control" id="Kelas" aria-describedby="password">
+                        <label for="kelas">Kelas</label>
+                        <input type="kelas" name="kelas" class="form-control" id="kelas" aria-describedby="password">
                     </div>
                     <div class="form-group">
-                        <label for="Jurusan">Jurusan</label>
-                        <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan"aria-describedby="Jurusan">
+                        <label for="jurusan">Jurusan</label>
+                        <input type="jurusan" name="jurusan" class="form-control" id="jurusan"aria-describedby="jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin"aria-describedby="jenis_kelamin">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email"aria-describedby="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="alamat" name="alamat" class="form-control" id="alamat"aria-describedby="alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir"aria-describedby="tanggal_lahir">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

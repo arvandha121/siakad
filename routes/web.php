@@ -7,6 +7,10 @@ use Illuminate\HTTP\Request;
 
 Route::resource('mahasiswa', MahasiswaController::class);
 
+// Route::get('mahasiswa/nilai/{mahasiswa}', [MahasiswaController::class, 'Mahasiswa_MataKuliah'])->name('mahasiswa.nilai');
+Route::get('nilai/{nim}',[MahasiswaController::class,'nilai'])->name('nilai'); 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

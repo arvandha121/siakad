@@ -6,6 +6,8 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
+use App\Models\Mahasiswa_MataKuliah;
+use App\Models\MataKuliah;
 
 class MahasiswaController extends Controller
 {
@@ -161,6 +163,16 @@ class MahasiswaController extends Controller
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')
         ->with('success', 'Mahasiswa Berhasil Diupdate');
+    }
+
+    public function nilai($nim)
+    {
+        // $list = Mahasiswa_Matakuliah::with("matakuliah")->where("mahasiswa_id", $nim)->get();
+        $mhs = Mahasiswa::with('kelas')->where("nim", $nim)->first();
+        $matkul = Mahasiswa_Matakuliah::with("matakuliah")->where("mahasiswa_id", ($mhs -> id_mahasiswa))->get();
+        // $matkul = Mahasiswa_Matakuliah::where('matakuliah_id', ($mhs -> id_mahasiswa))->first();
+        return view('mahasiswa.nilai', ['mahasiswa' => $mhs,'matakuliah'=>$matkul]);
+        //return dd($matkul);
     }
 
     /**

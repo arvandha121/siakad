@@ -9,6 +9,7 @@ Route::resource('mahasiswa', MahasiswaController::class);
 
 // Route::get('mahasiswa/nilai/{mahasiswa}', [MahasiswaController::class, 'Mahasiswa_MataKuliah'])->name('mahasiswa.nilai');
 Route::get('nilai/{nim}',[MahasiswaController::class,'nilai'])->name('nilai'); 
+Route::get('nilai/{nim}/cetak', [MahasiswaController::class, 'cetak'])->name('cetak');
 
 
 /*

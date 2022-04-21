@@ -48,6 +48,7 @@
                     </tbody>
                 </table>
                 <a class="btn btn-success mt3" href="{{ route('mahasiswa.index') }}">Kembali</a>
+                <a class="btn btn-info" href="{{ route('cetak', $mahasiswa->nim) }}"> Cetak KHS</a>
             </div>
         </div>
     </div>

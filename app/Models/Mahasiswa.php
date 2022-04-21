@@ -16,6 +16,7 @@ class Mahasiswa extends Model
         'nama',
         'kelas_id',
         'jurusan',
+        'foto',
         // 'kelas'
         // 'Jenis_Kelamin',
         // 'Email',

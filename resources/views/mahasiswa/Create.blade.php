@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm">
+                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="nim">Nim</label>
@@ -42,6 +42,10 @@
                         <label for="jurusan">Jurusan</label>
                         <input type="jurusan" name="jurusan" class="form-control" id="jurusan"aria-describedby="jurusan">
                     </div>
+                    <div class="form-group">
+                        <label for="image">Foto Profile</label>         
+                        <input type="file" class="form-control" name="image">
+                    </div>
                     {{-- <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin"aria-describedby="jenis_kelamin">
@@ -58,7 +62,8 @@
                         <label for="tanggal_lahir">Tanggal Lahir</label>
                         <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir"aria-describedby="tanggal_lahir">
                     </div> --}}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </form>
             </div>
         </div>

@@ -1,9 +1,11 @@
 @extends('mahasiswa.layout')
 @section('content')
 <div class="row">
-    <div class="col-lg-12 margin-tb">
+    <div class="col-lg-12">
         <div class="pull-left mt-2">
-            <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
+            <center>
+                <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
+            </center>
         </div>
         <div class="mt-3">
             <div style="margin-top: 2rem" class="float-left mb-4">
@@ -35,6 +37,7 @@
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
+        <th>Foto</th>
         {{-- <th>Jenis Kelamin</th>
         <th>Email</th>
         <th>Alamat</th>
@@ -48,6 +51,11 @@
         <td>{{ $mhs ->nama }}</td>
         <td>{{ $mhs ->kelas->nama_kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
+        <td>
+            <center>
+                <img style="width: 50px" src="{{ asset('storage/'.$mhs->foto)}}">
+            </center>
+        </td>
         {{-- <td>{{ $mhs ->jenis_kelamin }}</td>
         <td>{{ $mhs ->email }}</td>
         <td>{{ $mhs ->alamat }}</td>

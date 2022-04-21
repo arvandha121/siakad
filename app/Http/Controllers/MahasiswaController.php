@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 use App\Models\Mahasiswa_MataKuliah;
 use App\Models\MataKuliah;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class MahasiswaController extends Controller
 {
@@ -57,12 +59,13 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        
         //melakukan validasi data
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
             'kelas' => 'required',
-            'jurusan' => 'required', 
+            'jurusan' => 'required',
             // 'jenis_kelamin' => 'required', 
             // 'email' => 'required', 
             // 'alamat' => 'required', 
@@ -73,6 +76,12 @@ class MahasiswaController extends Controller
         $mahasiswa->nim =$request->get('nim');
         $mahasiswa->nama = $request->get('nama');
         $mahasiswa->jurusan = $request->get('jurusan');
+        
+        if($request->file('image')){
+            $image_name = $request->file('image')->store('image', 'public');
+        }
+
+        $mahasiswa->foto = $image_name;
         // $mahasiswa->save();
         
         $kelas = new Kelas;
@@ -140,7 +149,13 @@ class MahasiswaController extends Controller
         $mahasiswa->nim =$request->get('nim');
         $mahasiswa->nama =$request->get('nama');
         $mahasiswa->jurusan =$request->get('jurusan');
+        if ($mahasiswa->foto && file_exists(storage_path('app/public/' . $mahasiswa->foto))) {
+            Storage::delete('public/' . $mahasiswa->foto);  
+        }
+        $image_name = $request->file('foto')->store('fotos', 'public');
         $mahasiswa->save();
+
+        $mahasiswa->foto = $image_name;
 
         $kelas = new Kelas;
         $kelas->id = $request->get('kelas');
@@ -187,6 +202,15 @@ class MahasiswaController extends Controller
         Mahasiswa::where('nim', $nim)->delete();
         return redirect()->route('mahasiswa.index')
         -> with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    public function cetak($nim)
+    {
+        $mhs = Mahasiswa::with('kelas')->where("nim", $nim)->first();
+        $matkul = Mahasiswa_Matakuliah::with("matakuliah")->where("mahasiswa_id", ($mhs -> id_mahasiswa))->get();
+        // $matkul = Mahasiswa_Matakuliah::where('matakuliah_id', ($mhs -> id_mahasiswa))->first();
+        $pdf = PDF::loadview('mahasiswa.cetak', ['mahasiswa' => $mhs,'matakuliah'=>$matkul]);
+        return $pdf->stream();
     }
 }
 
